@@ -1,26 +1,27 @@
-document.getElementById('startBtn').addEventListener('click', () => {
-    const intro = document.getElementById('intro');
-    const mainContent = document.getElementById('main-content');
-    const music = document.getElementById('music');
+const startBtn = document.getElementById("startBtn");
+const intro = document.getElementById("intro");
+const site = document.getElementById("site");
+const music = document.getElementById("music");
 
-    // Fade out del botón Start
-    intro.style.opacity = '0';
+startBtn.addEventListener("click", () => {
+
+  // Mostrar contenido
+  intro.style.opacity = "0";
+
+  setTimeout(() => {
+    intro.style.display = "none";
+    site.classList.remove("hidden");
 
     setTimeout(() => {
-        intro.style.display = 'none';
+      site.style.opacity = "1";
+    }, 100);
 
-        // Cambiar fondo directamente (más confiable que clases)
-        document.body.style.background = 'url("14/fondo.png") center/cover no-repeat';
+  }, 1000);
 
-        // Mostrar contenido principal con fade-in
-        mainContent.style.opacity = '1';
-        mainContent.style.pointerEvents = 'auto';
-        mainContent.classList.add('show'); // Activa el fade-in de las imágenes decorativas
+  // Forzar reproducción en móvil
+  music.volume = 0.7;
+  music.play().catch(err => {
+    console.log("Autoplay bloqueado hasta interacción:", err);
+  });
 
-        // Reproducir música
-        music.volume = 0.5;
-        music.play().catch(error => {
-            console.log('Error al reproducir audio (puede ser por nombre del archivo o bloqueo del navegador):', error);
-        });
-    }, 1500);
 });
