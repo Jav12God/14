@@ -3,39 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz 14 de Febrero, Kath ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>Para Kath ❤️</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="intro">
-        <button id="startBtn"><strong>Start</strong></button>
+
+    <!-- Pantalla inicial -->
+    <div id="start-screen">
+        <button id="start-btn">START</button>
     </div>
 
-    <div id="main-content">
-        <div class="card">
-            <h1>Para mi amor, Kath ❤️</h1>
-            <p class="letter">
-                Hola, amor mío,<br><br>
-                Hoy es 14 de febrero, nuestro primer Día de San Valentín juntos. Hemos pasado por muchas cosas, hemos tenido nuestras peleas y discusiones, pero siempre hemos estado ahí el uno para el otro, apoyándonos en cada momento.<br><br>
-                Los cuatro meses que llevamos juntos han sido los más felices de mi vida. No soy el hombre perfecto, pero por ti quiero mejorar cada día más. Quiero darte todo lo mejor, porque para mí tú mereces el mundo entero.<br><br>
-                Sé que a veces soy un poco celoso, pero es porque no soporto la idea de que alguien intente alejarte de mi lado. Te amo con todo mi corazón, te amo mucho. Realmente quiero pasar toda mi vida contigo, quiero que algún día te conviertas en mi esposa y, sobre todo, quiero formar una familia juntos y ser inmensamente felices.<br><br>
-                Te amo, Kath ❤️
+    <!-- Contenido principal -->
+    <div id="main-content" class="hidden">
+
+        <!-- Audio -->
+        <audio id="bg-music" loop>
+            <source src="14/music.mp3" type="audio/mp3">
+        </audio>
+
+        <!-- Decoraciones -->
+        <img src="14/corazon_gato.png" class="decor decor1">
+        <img src="14/gato_flor.png" class="decor decor2">
+        <img src="14/mob_flores.png" class="decor decor3">
+        <img src="14/mob1.png" class="decor decor4">
+        <img src="14/omori.png" class="decor decor5">
+        <img src="14/omori2.png" class="decor decor6">
+
+        <!-- Carta -->
+        <div class="carta">
+            <p>
+                Hola, amor.<br><br>
+
+                Hoy es 14 de febrero… nuestro primer 14 de febrero juntos.  
+                Hemos pasado por muchas cosas, hemos tenido nuestras peleas y discusiones, 
+                pero incluso en los momentos difíciles siempre hemos estado el uno para el otro.  
+                Y eso es lo que más amo de nosotros.<br><br>
+
+                Estos cuatro meses a tu lado han sido los más felices de mi vida.  
+                No soy el hombre perfecto, pero por ti quiero mejorar cada día, 
+                quiero crecer, quiero convertirme en alguien que esté a tu altura.  
+                Porque tú mereces todo lo bueno que existe en este mundo.<br><br>
+
+                A veces soy un poco celoso… y sé que puedo exagerar,  
+                pero es porque te amo de verdad y no quiero que nadie intente 
+                separarte de mi lado. Eres mi lugar seguro, mi persona favorita, 
+                mi todo.<br><br>
+
+                Te amo. Te amo muchísimo.  
+                Quiero pasar mi vida contigo.  
+                Quiero que un día seas mi esposa.  
+                Quiero formar una familia a tu lado y que construyamos una historia hermosa juntos.<br><br>
+
+                Gracias por existir.  
+                Te amo, Kath. ❤️
             </p>
         </div>
 
-        <!-- Decoraciones animadas -->
-        <img src="14/corazon_gato.png" class="floating decor1" alt="">
-        <img src="14/gato_flor.png" class="floating decor2" alt="">
-        <img src="14/mob_flores.png" class="floating decor3" alt="">
-        <img src="14/mob1.png" class="floating decor4" alt="">
-        <img src="14/omori.png" class="floating decor5" alt="">
-        <img src="14/omori2.png" class="floating decor6" alt="">
     </div>
 
-    <!-- Cambia el src al nombre nuevo del archivo -->
-    <audio id="music" src="14/music.mp3" loop preload="auto"></audio>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
