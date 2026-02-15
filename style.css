@@ -1,23 +1,105 @@
-const startBtn = document.getElementById("start-btn");
-const startScreen = document.getElementById("start-screen");
-const mainContent = document.getElementById("main-content");
-const music = document.getElementById("bg-music");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-startBtn.addEventListener("click", () => {
+body {
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
 
-    // Reproducir música
-    music.play();
+/* INTRO */
+#intro {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: #2a5bd7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease;
+  z-index: 10;
+}
 
-    // Transición suave
-    startScreen.style.opacity = "0";
+#startBtn {
+  font-size: 3rem;
+  font-weight: bold;
+  padding: 20px 60px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background: white;
+  color: #2a5bd7;
+  transition: 0.3s;
+}
 
-    setTimeout(() => {
-        startScreen.classList.add("hidden");
-        mainContent.classList.remove("hidden");
+#startBtn:active {
+  transform: scale(0.95);
+}
 
-        setTimeout(() => {
-            mainContent.style.opacity = "1";
-        }, 100);
+/* SITIO */
+#site {
+  min-height: 100vh;
+  background: url("14/fondo.png") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
 
-    }, 1500);
-});}
+.hidden {
+  display: none;
+}
+
+/* CARTA */
+.card {
+  background: white;
+  width: 90%;
+  max-width: 400px;   /* IMPORTANTE para que no ocupe todo */
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  z-index: 5;
+  animation: fadeUp 1.5s ease forwards;
+}
+
+.card h2 {
+  margin-bottom: 15px;
+}
+
+.card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ANIMACION CARTA */
+@keyframes fadeUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* IMAGENES FLOTANTES */
+.floating {
+  position: absolute;
+  width: 70px;
+  animation: float 5s infinite ease-in-out;
+  z-index: 1;
+}
+
+.f1 { top: 5%; left: 5%; }
+.f2 { top: 10%; right: 5%; }
+.f3 { bottom: 10%; left: 10%; }
+.f4 { bottom: 5%; right: 5%; }
+.f5 { top: 40%; left: 0; }
+.f6 { top: 50%; right: 0; }
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
