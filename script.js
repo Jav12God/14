@@ -1,22 +1,26 @@
 document.getElementById('startBtn').addEventListener('click', () => {
-    // Cambiar fondo y transiciones
-    document.body.classList.remove('initial');
-    document.body.classList.add('main');
+    const intro = document.getElementById('intro');
+    const mainContent = document.getElementById('main-content');
+    const music = document.getElementById('music');
 
     // Fade out del botón Start
-    document.getElementById('intro').style.opacity = '0';
+    intro.style.opacity = '0';
 
-    // Después del fade out, mostrar contenido y reproducir música
     setTimeout(() => {
-        document.getElementById('intro').style.display = 'none';
+        intro.style.display = 'none';
 
-        const mainContent = document.getElementById('main-content');
+        // Cambiar fondo directamente (más confiable que clases)
+        document.body.style.background = 'url("14/fondo.png") center/cover no-repeat';
+
+        // Mostrar contenido principal con fade-in
         mainContent.style.opacity = '1';
         mainContent.style.pointerEvents = 'auto';
+        mainContent.classList.add('show'); // Activa el fade-in de las imágenes decorativas
 
-        // Reproducir música (funciona en móvil porque es tras interacción del usuario)
-        const music = document.getElementById('music');
-        music.volume = 0.6; // volumen cómodo
-        music.play();
+        // Reproducir música
+        music.volume = 0.5;
+        music.play().catch(error => {
+            console.log('Error al reproducir audio (puede ser por nombre del archivo o bloqueo del navegador):', error);
+        });
     }, 1500);
 });
