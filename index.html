@@ -3,128 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>Para ti, Kath 💙 - Nuestro primer 14 de febrero</title>
+  <title>Para ti, Kath 💙</title>
+  <link rel="stylesheet" href="./style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Parisienne&display=swap" rel="stylesheet">
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html, body {
-      height: 100%;
-      min-height: 100dvh;
-      margin: 0;
-      overflow: hidden;
-    }
-    body {
-      background: linear-gradient(135deg, #4facfe, #00f2fe);
-      font-family: 'Segoe UI', sans-serif;
-      color: #0f172a;
-      position: relative;
-      transition: background 2.5s ease-in-out;
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-    }
-    body.loaded {
-      background: url('./fondo.png') center/cover no-repeat fixed;
-    }
-
-    .container {
-      position: relative;
-      z-index: 10;
-      min-height: 100dvh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 4vw;
-      text-align: center;
-      transition: opacity 1.8s ease, transform 1.8s ease;
-    }
-    .start-screen { opacity: 1; transform: scale(1); }
-    .start-screen.fade { opacity: 0; transform: scale(0.92); }
-
-    .start-btn {
-      width: clamp(150px, 50vw, 300px);
-      cursor: pointer;
-      transition: all 0.6s;
-      box-shadow: 0 20px 50px rgba(29,78,216,0.7);
-      border-radius: 20px;
-    }
-    .start-btn:hover, .start-btn:active {
-      transform: scale(1.1) rotate(3deg);
-      box-shadow: 0 30px 70px rgba(29,78,216,0.9);
-    }
-
-    .letter-container {
-      display: none;
-      max-width: 90%;
-      width: 820px;
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(15px);
-      border-radius: 30px;
-      padding: 6vw 5vw;
-      border: 2px solid rgba(255,255,255,0.35);
-      box-shadow: 0 25px 70px rgba(30,58,138,0.5);
-      animation: reveal 2s ease-out forwards;
-    }
-
-    .title {
-      font-family: 'Great Vibes', cursive;
-      font-size: clamp(3.5rem, 10vw, 6rem);
-      color: #ffffff;
-      text-shadow: 0 0 30px #1e40af;
-      margin-bottom: 5vw;
-    }
-
-    .text {
-      font-family: 'Dancing Script', cursive;
-      font-size: clamp(1.6rem, 5vw, 2.3rem);
-      line-height: 1.8;
-      color: #e0f2fe;
-      text-shadow: 0 3px 12px rgba(0,0,0,0.4);
-      white-space: pre-wrap;
-    }
-
-    .signature {
-      font-size: clamp(2.5rem, 7vw, 3.5rem);
-      color: #ffffff;
-      margin-top: 8vw;
-      font-family: 'Parisienne', cursive;
-      text-shadow: 0 0 20px #1e40af;
-    }
-
-    .float-img {
-      position: absolute;
-      pointer-events: none;
-      opacity: 0.7;
-      animation: float 14s infinite ease-in-out;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
-    }
-
-    @keyframes float {
-      0%,100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-8vh) rotate(12deg); }
-    }
-
-    @keyframes reveal {
-      0% { opacity:0; transform: translateY(10vh) scale(0.8); }
-      100% { opacity:1; transform: translateY(0) scale(1); }
-    }
-
-    @media (max-width: 768px) {
-      .letter-container { padding: 8vw 6vw; }
-      .float-img { width: clamp(60px, 20vw, 120px) !important; }
-      .start-btn { width: clamp(120px, 60vw, 250px); }
-    }
-  </style>
 </head>
 <body>
 
-  <div class="container start-screen" id="startScreen">
-    <img src="./mob1.png" alt="Abrir carta" class="start-btn" id="startBtn">
+  <div class="container" id="startScreen">
+    <img src="./mob1.png" id="startBtn" alt="Toca para empezar">
   </div>
 
-  <div class="container" id="letterScreen" style="opacity:0; display:none;">
+  <div class="container" id="letterScreen">
     <div class="letter-container">
       <h1 class="title">Mi Kath preciosa 💙</h1>
       <p class="text" id="letterText"></p>
@@ -133,107 +24,9 @@
   </div>
 
   <audio id="music" loop preload="auto">
-    <source src="./Let It Happen, but its the best part (Slowed Reverb).mp3" type="audio/mpeg">
+    <source src="./Let It Happen, but its the best part (_slowed Reverb).mp3" type="audio/mpeg">
   </audio>
 
-  <script>
-    const startBtn = document.getElementById('startBtn');
-    const startScreen = document.getElementById('startScreen');
-    const letterScreen = document.getElementById('letterScreen');
-    const letterText = document.getElementById('letterText');
-    const audio = document.getElementById('music');
-    const body = document.body;
-
-    const fullText = `Hola, mi amor...
-
-Hoy es 14 de febrero, nuestro primer San Valentín juntos. ❤️
-
-Hemos pasado por tantas cosas en estos meses... hemos reído, hemos llorado, hemos tenido nuestras peleas y discusiones fuertes, pero siempre, sin importar qué, hemos estado ahí el uno para el otro. Nunca nos hemos soltado.
-
-Estos 4 meses han sido los más felices de toda mi vida. Contigo todo se siente diferente, más real, más bonito.
-
-No soy perfecto, lo sé. A veces meto la pata, a veces soy demasiado celoso... pero todo eso es porque te amo con una intensidad que no puedo explicar. No quiero perderte nunca, no soporto la idea de que alguien más intente meterse entre nosotros.
-
-Por ti quiero ser mejor cada día. Quiero darte el mundo entero, porque tú mereces todo lo bueno que existe.
-
-Te amo, Kath. Te amo muchísimo. Sueño con pasar el resto de mi vida a tu lado, con verte caminar hacia el altar siendo mi esposa, con construir una familia juntos, con verte sonreír todos los días y saber que somos felices... realmente felices.
-
-Gracias por elegirme. Gracias por ser tú.
-
-Te amo con todo mi ser. ♾️💙`;
-
-    startBtn.addEventListener('click', async () => {
-      // Cargar y reproducir audio con manejo mejorado para móviles
-      audio.volume = 0.6;
-      audio.load(); // Resetear y cargar
-      try {
-        await audio.play();
-      } catch (err) {
-        console.log("Play falló inicialmente, reintentando...", err);
-        // Fallback para iOS/Safari: a veces necesita un segundo intento tras touch
-        setTimeout(async () => {
-          try {
-            await audio.play();
-          } catch (e) {
-            console.log("Segundo intento falló", e);
-            alert("Si la música no suena, revisa el volumen o modo silencio del teléfono. Toca de nuevo si es necesario 💙");
-          }
-        }, 500);
-      }
-
-      startScreen.classList.add('fade');
-
-      setTimeout(() => {
-        body.classList.add('loaded');
-        startScreen.style.display = 'none';
-        letterScreen.style.display = 'flex';
-        letterScreen.style.opacity = '1';
-        startTyping();
-        addFloatingDecorations();
-      }, 1800);
-    });
-
-    function startTyping() {
-      let i = 0;
-      letterText.innerHTML = '';
-      const speed = 65;
-
-      function type() {
-        if (i < fullText.length) {
-          letterText.innerHTML += fullText.charAt(i) === '\n' ? '<br><br>' : fullText.charAt(i);
-          i++;
-          setTimeout(type, speed);
-        }
-      }
-      type();
-    }
-
-    function addFloatingDecorations() {
-      const images = [
-        './corazon_gato.png', './gato_flor.png', './mob_flores.png', './mob1.png',
-        './omori.png', './omori2.png'
-      ];
-
-      for (let i = 0; i < 6; i++) {
-        createFloatImage(images[Math.floor(Math.random() * images.length)]);
-      }
-
-      setInterval(() => {
-        createFloatImage(images[Math.floor(Math.random() * images.length)]);
-      }, 10000);
-    }
-
-    function createFloatImage(src) {
-      const img = document.createElement('img');
-      img.src = src;
-      img.classList.add('float-img');
-      img.style.width = (90 + Math.random() * 140) + 'px';
-      img.style.left = Math.random() * 100 + 'vw';
-      img.style.top = Math.random() * 120 + 'vh';
-      img.style.animationDuration = (12 + Math.random() * 12) + 's';
-      document.body.appendChild(img);
-      setTimeout(() => img.remove(), 50000);
-    }
-  </script>
+  <script src="./script.js"></script>
 </body>
 </html>
