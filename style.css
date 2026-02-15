@@ -8,21 +8,10 @@ body {
     height: 100vh;
     overflow: hidden;
     font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
     transition: background 2s ease;
 }
 
-body.initial {
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-}
-
-body.main {
-    background-image: url('14/fondo.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-/* Pantalla inicial */
 #intro {
     position: absolute;
     inset: 0;
@@ -54,7 +43,6 @@ body.main {
     transform: scale(0.95);
 }
 
-/* Contenido principal */
 #main-content {
     position: absolute;
     inset: 0;
@@ -88,15 +76,19 @@ h1 {
     color: #333;
 }
 
-/* Animaciones flotantes de las imágenes */
 .floating {
     position: absolute;
     width: 18vw;
     max-width: 150px;
     user-select: none;
     pointer-events: none;
-    opacity: 0.85;
+    opacity: 0;
     animation: float 20s ease-in-out infinite;
+    transition: opacity 2s ease;
+}
+
+#main-content.show .floating {
+    opacity: 0.85;
 }
 
 .decor1 { bottom: 8%; left: 5%; animation-delay: 0s; }
@@ -107,9 +99,9 @@ h1 {
 .decor6 { bottom: 25%; left: 12%; animation-delay: 15s; }
 
 @keyframes float {
-    0%   { transform: translate(0,  0px) rotate(0deg); }
+    0%   { transform: translate(0, 0px) rotate(0deg); }
     25%  { transform: translate(20px, -30px) rotate(8deg); }
     50%  { transform: translate(-15px, 15px) rotate(-8deg); }
     75%  { transform: translate(30px, -10px) rotate(5deg); }
-    100% { transform: translate(0,  0px) rotate(0deg); }
+    100% { transform: translate(0, 0px) rotate(0deg); }
 }
