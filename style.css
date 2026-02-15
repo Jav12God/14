@@ -1,98 +1,115 @@
-* { margin:0; padding:0; box-sizing:border-box; }
-html, body {
-  height: 100%;
-  min-height: 100dvh;
-  margin: 0;
-  overflow: hidden;
-}
-body {
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
-  font-family: 'Segoe UI', sans-serif;
-  position: relative;
-  transition: background 2.5s ease-in-out;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-body.loaded {
-  background: url('./fondo.png') center/cover no-repeat fixed;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.container {
-  position: relative;
-  z-index: 10;
-  min-height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4vw;
-  text-align: center;
+body {
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    transition: background 2s ease;
+}
+
+body.initial {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+
+body.main {
+    background-image: url('14/fondo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Pantalla inicial */
+#intro {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+    transition: opacity 1.5s ease;
+    z-index: 10;
 }
 
 #startBtn {
-  width: clamp(120px, 45vw, 220px);   /* Botón más pequeño y bien proporcionado en celular */
-  height: auto;
-  cursor: pointer;
-  border-radius: 20px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-  transition: transform 0.4s;
+    font-size: 4rem;
+    padding: 20px 60px;
+    background: #ff6b9d;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
 }
+
+#startBtn:hover {
+    transform: scale(1.1);
+}
+
 #startBtn:active {
-  transform: scale(1.05);
+    transform: scale(0.95);
 }
 
-#letterScreen {
-  opacity: 0;
-  display: none;
-  transition: opacity 1.5s ease;
+/* Contenido principal */
+#main-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 2s ease;
 }
 
-.letter-container {
-  max-width: 90%;
-  background: rgba(255,255,255,0.18);
-  backdrop-filter: blur(12px);
-  border-radius: 25px;
-  padding: 7vw 5vw;
-  border: 2px solid rgba(255,255,255,0.4);
-  box-shadow: 0 20px 60px rgba(30,58,138,0.5);
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px 25px;
+    border-radius: 20px;
+    max-width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 }
 
-.title {
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(3rem, 11vw, 5rem);
-  color: white;
-  text-shadow: 0 0 25px #1e40af;
-  margin-bottom: 4vw;
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    color: #d63081;
+    margin-bottom: 20px;
 }
 
-.text {
-  font-family: 'Dancing Script', cursive;
-  font-size: clamp(1.5rem, 5.5vw, 2.2rem);
-  line-height: 1.7;
-  color: #e0f2fe;
-  white-space: pre-wrap;
+.letter {
+    font-size: 1.35rem;
+    line-height: 1.8;
+    color: #333;
 }
 
-.signature {
-  font-size: clamp(2.2rem, 7vw, 3rem);
-  color: white;
-  margin-top: 6vw;
-  font-family: 'Parisienne', cursive;
+/* Animaciones flotantes de las imágenes */
+.floating {
+    position: absolute;
+    width: 18vw;
+    max-width: 150px;
+    user-select: none;
+    pointer-events: none;
+    opacity: 0.85;
+    animation: float 20s ease-in-out infinite;
 }
 
-.float-img {
-  position: absolute;
-  pointer-events: none;
-  opacity: 0.75;
-  animation: float 14s infinite ease-in-out;
-  filter: drop-shadow(0 8px 15px rgba(0,0,0,0.3));
-}
+.decor1 { bottom: 8%; left: 5%; animation-delay: 0s; }
+.decor2 { top: 10%; right: 8%; animation-delay: 3s; }
+.decor3 { bottom: 15%; right: 10%; animation-delay: 6s; }
+.decor4 { top: 15%; left: 8%; animation-delay: 9s; }
+.decor5 { top: 30%; left: 3%; animation-delay: 12s; }
+.decor6 { bottom: 25%; left: 12%; animation-delay: 15s; }
 
 @keyframes float {
-  0%,100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-7vh) rotate(10deg); }
-}
-
-@media (max-width: 768px) {
-  .float-img { width: clamp(50px, 16vw, 100px) !important; }
+    0%   { transform: translate(0,  0px) rotate(0deg); }
+    25%  { transform: translate(20px, -30px) rotate(8deg); }
+    50%  { transform: translate(-15px, 15px) rotate(-8deg); }
+    75%  { transform: translate(30px, -10px) rotate(5deg); }
+    100% { transform: translate(0,  0px) rotate(0deg); }
 }
