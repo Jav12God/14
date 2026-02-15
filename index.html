@@ -4,10 +4,64 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>Para ti, Kath 💙</title>
-  <link rel="stylesheet" href="./style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Parisienne&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body {
+      height: 100%;
+      min-height: 100dvh;
+      margin: 0;
+      overflow: hidden;
+    }
+    body {
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      position: relative;
+      transition: background 2s ease-in-out;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    body.loaded {
+      background: url('./fondo.png') center/cover no-repeat fixed;
+    }
+    .container {
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+    }
+    #startBtn {
+      width: clamp(100px, 40vw, 200px); /* Más pequeño y perfecto en celular */
+      cursor: pointer;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      transition: transform 0.3s;
+    }
+    #startBtn:active { transform: scale(1.1); }
+
+    #letterScreen { display: none; opacity: 0; transition: opacity 1.5s; }
+
+    .letter-container {
+      max-width: 90%;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(12px);
+      border-radius: 25px;
+      padding: 8vw 6vw;
+      border: 2px solid rgba(255,255,255,0.4);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+    .title { font-family: 'Great Vibes', cursive; font-size: clamp(2.8rem, 10vw, 5rem); color: white; margin-bottom: 4vw; }
+    .text { font-family: 'Dancing Script', cursive; font-size: clamp(1.4rem, 5vw, 2.1rem); line-height: 1.7; color: #e0f2fe; white-space: pre-wrap; }
+    .signature { font-size: clamp(2rem, 7vw, 3rem); color: white; margin-top: 6vw; font-family: 'Parisienne', cursive; }
+
+    .float-img { position: absolute; pointer-events: none; opacity: 0.75; animation: float 14s infinite ease-in-out; }
+    @keyframes float { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-6vh) rotate(8deg); } }
+
+    #musicBtn { display: none; position: fixed; bottom: 20px; right: 20px; padding: 15px 25px; background: #3b82f6; color: white; border-radius: 50px; z-index: 100; }
+  </style>
 </head>
 <body>
 
@@ -23,10 +77,21 @@
     </div>
   </div>
 
+  <button id="musicBtn">🎵 Toca para música</button>
+
   <audio id="music" loop preload="auto">
-    <source src="./Let It Happen, but its the best part (_slowed Reverb).mp3" type="audio/mpeg">
+    <source src="./Let It Happen, but its the best part (Slowed Reverb).mp3" type="audio/mpeg">
   </audio>
 
-  <script src="./script.js"></script>
-</body>
-</html>
+  <script>
+    const startBtn = document.getElementById('startBtn');
+    const startScreen = document.getElementById('startScreen');
+    const letterScreen = document.getElementById('letterScreen');
+    const letterText = document.getElementById('letterText');
+    const audio = document.getElementById('music');
+    const musicBtn = document.getElementById('musicBtn');
+    const body = document.body;
+
+    const fullText = `Hola, mi amor...
+
+Hoy es 14 de
