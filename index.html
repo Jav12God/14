@@ -2,44 +2,50 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>Para ti, Kath 💙 - Nuestro primer 14 de febrero</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Parisienne&display=swap" rel="stylesheet">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
+    html, body {
+      height: 100%;
+      min-height: 100dvh;
+      margin: 0;
+      overflow: hidden;
+    }
     body {
-      min-height: 100vh;
       background: linear-gradient(135deg, #4facfe, #00f2fe);
       font-family: 'Segoe UI', sans-serif;
       color: #0f172a;
-      overflow: hidden;
       position: relative;
-      transition: background 2.5s ease-in-out, transform 2s ease;
+      transition: background 2.5s ease-in-out;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
     }
     body.loaded {
-      background: url('fondo.png') center/cover no-repeat fixed;
-      transform: scale(1.02);
+      background: url('./fondo.png') center/cover no-repeat fixed;
     }
 
     .container {
       position: relative;
       z-index: 10;
-      min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 4vw;
       text-align: center;
       transition: opacity 1.8s ease, transform 1.8s ease;
     }
     .start-screen { opacity: 1; transform: scale(1); }
-    .start-screen.fade { opacity: 0; transform: scale(0.95); }
+    .start-screen.fade { opacity: 0; transform: scale(0.92); }
 
     .start-btn {
-      padding: 25px 80px;
-      font-size: 5.5rem;
+      padding: 4vw 10vw;
+      font-size: clamp(3rem, 12vw, 5.5rem);
       font-weight: bold;
       background: linear-gradient(45deg, #1d4ed8, #60a5fa);
       color: white;
@@ -52,18 +58,19 @@
       letter-spacing: 6px;
       text-shadow: 0 4px 10px rgba(0,0,0,0.4);
     }
-    .start-btn:hover {
-      transform: scale(1.12) rotate(4deg);
+    .start-btn:hover, .start-btn:active {
+      transform: scale(1.1) rotate(3deg);
       box-shadow: 0 30px 70px rgba(29,78,216,0.9);
     }
 
     .letter-container {
       display: none;
-      max-width: 820px;
+      max-width: 90%;
+      width: 820px;
       background: rgba(255,255,255,0.15);
       backdrop-filter: blur(15px);
       border-radius: 30px;
-      padding: 60px 50px;
+      padding: 6vw 5vw;
       border: 2px solid rgba(255,255,255,0.35);
       box-shadow: 0 25px 70px rgba(30,58,138,0.5);
       animation: reveal 2s ease-out forwards;
@@ -71,15 +78,15 @@
 
     .title {
       font-family: 'Great Vibes', cursive;
-      font-size: 6rem;
+      font-size: clamp(3.5rem, 10vw, 6rem);
       color: #ffffff;
       text-shadow: 0 0 30px #1e40af;
-      margin-bottom: 40px;
+      margin-bottom: 5vw;
     }
 
     .text {
       font-family: 'Dancing Script', cursive;
-      font-size: 2.3rem;
+      font-size: clamp(1.6rem, 5vw, 2.3rem);
       line-height: 1.8;
       color: #e0f2fe;
       text-shadow: 0 3px 12px rgba(0,0,0,0.4);
@@ -87,9 +94,9 @@
     }
 
     .signature {
-      font-size: 3.5rem;
+      font-size: clamp(2.5rem, 7vw, 3.5rem);
       color: #ffffff;
-      margin-top: 60px;
+      margin-top: 8vw;
       font-family: 'Parisienne', cursive;
       text-shadow: 0 0 20px #1e40af;
     }
@@ -97,19 +104,24 @@
     .float-img {
       position: absolute;
       pointer-events: none;
-      opacity: 0.75;
+      opacity: 0.7;
       animation: float 14s infinite ease-in-out;
       filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
     }
 
     @keyframes float {
       0%,100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-60px) rotate(12deg); }
+      50% { transform: translateY(-8vh) rotate(12deg); }
     }
 
     @keyframes reveal {
-      0% { opacity:0; transform: translateY(80px) scale(0.8); }
+      0% { opacity:0; transform: translateY(10vh) scale(0.8); }
       100% { opacity:1; transform: translateY(0) scale(1); }
+    }
+
+    @media (max-width: 768px) {
+      .letter-container { padding: 8vw 6vw; }
+      .float-img { width: clamp(60px, 20vw, 120px) !important; }
     }
   </style>
 </head>
@@ -119,7 +131,7 @@
     <button class="start-btn" id="startBtn">START</button>
   </div>
 
-  <div class="container" id="letterScreen" style="opacity:0;">
+  <div class="container" id="letterScreen" style="opacity:0; display:none;">
     <div class="letter-container">
       <h1 class="title">Mi Kath preciosa 💙</h1>
       <p class="text" id="letterText"></p>
@@ -127,8 +139,8 @@
     </div>
   </div>
 
-  <audio id="music" loop>
-    <source src="Let It Happen, but its the best part (Slowed Reverb).mp3" type="audio/mpeg">
+  <audio id="music" loop preload="auto">
+    <source src="./Let It Happen, but its the best part (Slowed Reverb).mp3" type="audio/mpeg">
   </audio>
 
   <script>
@@ -157,14 +169,27 @@ Gracias por elegirme. Gracias por ser tú.
 
 Te amo con todo mi ser. ♾️💙`;
 
-    startBtn.addEventListener('click', () => {
-      audio.play().catch(err => console.log("Audio iniciado tras interacción", err));
+    startBtn.addEventListener('click', async () => {
+      // Intentar reproducir audio inmediatamente
+      audio.volume = 0.5; // bajo para no asustar
+      try {
+        await audio.play();
+      } catch (err) {
+        console.log("Primer play falló, reintentando...", err);
+        audio.load(); // recarga para resetear contexto
+        await audio.play().catch(e => {
+          console.log("Segundo intento falló", e);
+          // Fallback: mostrar botón extra si falla en iOS
+          alert("Toca de nuevo o revisa volumen/silencio del teléfono. La música debería sonar ahora 💙");
+        });
+      }
 
       startScreen.classList.add('fade');
 
       setTimeout(() => {
         body.classList.add('loaded');
         startScreen.style.display = 'none';
+        letterScreen.style.display = 'flex';
         letterScreen.style.opacity = '1';
         startTyping();
         addFloatingDecorations();
@@ -174,7 +199,7 @@ Te amo con todo mi ser. ♾️💙`;
     function startTyping() {
       let i = 0;
       letterText.innerHTML = '';
-      const speed = 65; // ajusta: más bajo = más rápido
+      const speed = 65;
 
       function type() {
         if (i < fullText.length) {
@@ -188,19 +213,17 @@ Te amo con todo mi ser. ♾️💙`;
 
     function addFloatingDecorations() {
       const images = [
-        'corazon_gato.png', 'gato_flor.png', 'mob_flores.png', 'mob1.png',
-        'omori.png', 'omori2.png'
+        './corazon_gato.png', './gato_flor.png', './mob_flores.png', './mob1.png',
+        './omori.png', './omori2.png'
       ];
 
-      // Iniciales
-      for (let i = 0; i < 8; i++) {
+      for (let i = 0; i < 6; i++) { // menos en móvil para performance
         createFloatImage(images[Math.floor(Math.random() * images.length)]);
       }
 
-      // Más cada cierto tiempo
       setInterval(() => {
         createFloatImage(images[Math.floor(Math.random() * images.length)]);
-      }, 7000);
+      }, 10000); // más lento en móvil
     }
 
     function createFloatImage(src) {
@@ -210,11 +233,9 @@ Te amo con todo mi ser. ♾️💙`;
       img.style.width = (90 + Math.random() * 140) + 'px';
       img.style.left = Math.random() * 100 + 'vw';
       img.style.top = Math.random() * 120 + 'vh';
-      img.style.animationDuration = (10 + Math.random() * 12) + 's';
-      img.style.animationDelay = Math.random() * 5 + 's';
+      img.style.animationDuration = (12 + Math.random() * 12) + 's';
       document.body.appendChild(img);
-
-      setTimeout(() => img.remove(), 45000);
+      setTimeout(() => img.remove(), 50000);
     }
   </script>
 </body>
