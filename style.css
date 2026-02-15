@@ -1,0 +1,98 @@
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body {
+  height: 100%;
+  min-height: 100dvh;
+  margin: 0;
+  overflow: hidden;
+}
+body {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+  transition: background 2.5s ease-in-out;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+body.loaded {
+  background: url('./fondo.png') center/cover no-repeat fixed;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4vw;
+  text-align: center;
+}
+
+#startBtn {
+  width: clamp(120px, 45vw, 220px);   /* Botón más pequeño y bien proporcionado en celular */
+  height: auto;
+  cursor: pointer;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  transition: transform 0.4s;
+}
+#startBtn:active {
+  transform: scale(1.05);
+}
+
+#letterScreen {
+  opacity: 0;
+  display: none;
+  transition: opacity 1.5s ease;
+}
+
+.letter-container {
+  max-width: 90%;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(12px);
+  border-radius: 25px;
+  padding: 7vw 5vw;
+  border: 2px solid rgba(255,255,255,0.4);
+  box-shadow: 0 20px 60px rgba(30,58,138,0.5);
+}
+
+.title {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(3rem, 11vw, 5rem);
+  color: white;
+  text-shadow: 0 0 25px #1e40af;
+  margin-bottom: 4vw;
+}
+
+.text {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.5rem, 5.5vw, 2.2rem);
+  line-height: 1.7;
+  color: #e0f2fe;
+  white-space: pre-wrap;
+}
+
+.signature {
+  font-size: clamp(2.2rem, 7vw, 3rem);
+  color: white;
+  margin-top: 6vw;
+  font-family: 'Parisienne', cursive;
+}
+
+.float-img {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.75;
+  animation: float 14s infinite ease-in-out;
+  filter: drop-shadow(0 8px 15px rgba(0,0,0,0.3));
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-7vh) rotate(10deg); }
+}
+
+@media (max-width: 768px) {
+  .float-img { width: clamp(50px, 16vw, 100px) !important; }
+}
